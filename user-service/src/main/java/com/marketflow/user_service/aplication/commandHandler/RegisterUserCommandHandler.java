@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.marketflow.user_service.aplication.command.RegisterUserCommand;
 import com.marketflow.user_service.aplication.output.UserDTO;
+import com.marketflow.user_service.domain.exceptions.PasswordNotEquals;
 import com.marketflow.user_service.domain.exceptions.UserEmailAlreadyExists;
 import com.marketflow.user_service.domain.model.Email;
 import com.marketflow.user_service.domain.model.User;
@@ -26,12 +27,12 @@ public class RegisterUserCommandHandler {
 		UserPassword confirmPassword = new UserPassword(command.getConfirmPassword());		
 		Email userEmail =new Email(command.getEmail());
 		
-		if (userPort.findByEmail(userEmail.getValue()))
+		if (userPort.existsByEmail(userEmail.getValue()))
 			throw new UserEmailAlreadyExists();
 		
 		
 		if (!password.equals(confirmPassword))
-			throw new UserEmailAlreadyExists();
+			throw new PasswordNotEquals();
 		
 		User user = User.registerUser(name, password, userEmail);		
 		

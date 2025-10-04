@@ -3,6 +3,8 @@ package com.marketflow.user_service.domain.model;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import com.marketflow.user_service.domain.exceptions.IncorrectFormatException;
+
 import lombok.Getter;
 
 @Getter
@@ -13,7 +15,7 @@ public class Email {
 	
 	public Email(String value) {
 		if (!EMAIL_REGEX.matcher(value).matches()) {
-			throw new IllegalArgumentException();
+			throw new IncorrectFormatException();
 		}
 	}
 
