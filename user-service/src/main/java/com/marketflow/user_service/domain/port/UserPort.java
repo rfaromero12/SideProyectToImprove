@@ -8,4 +8,6 @@ public interface UserPort {
 
 	User save(User user);
 
+	User findUserByEmail(String value);
+
 }

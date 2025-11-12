@@ -32,4 +32,11 @@ public class UserAdapter implements UserPort{
 		return UserMapper.fromSchemaToDomain(repository.save(entity));
 	}
 
+	@Override
+	public User findUserByEmail(String email) {
+		log.info("Buscando usuario con email " + email);
+
+		return UserMapper.fromSchemaToDomain(repository.findByEmail(email));
+	}
+
 }
