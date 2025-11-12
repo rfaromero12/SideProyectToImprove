@@ -15,7 +15,7 @@ public class Email {
 	
 	public Email(String value) {
 		if (!EMAIL_REGEX.matcher(value).matches()) {
-			throw new IncorrectFormatException();
+			throw new IncorrectFormatException("El email no cumple con el formato esperado");
 		}
 	}
 
